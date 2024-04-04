@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  pg_dump:
+    image: postgres:${POSTGRES_VERSION}
+    environment:
+      POSTGRES_HOST: $POSTGRES_HOST
+      POSTGRES_PORT: $POSTGRES_PORT
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_DB: $POSTGRES_DB
+      PGPASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "chmod 777 -R /app && ./dump.sh"
